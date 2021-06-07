@@ -5,6 +5,8 @@ import { Welcome } from "../screens/Home";
 import { Search } from "../screens/Search";
 import { Weather } from "../screens/Weather";
 import { colors } from "../styles/colors";
+import { OldWeather } from "../screens/oldWeatherApp";
+import { DataCityRoutes } from "./tabs.routes";
 
 const stackRoutes = createStackNavigator();
 
@@ -19,6 +21,7 @@ export const StackNavigatorRoutes = () => (
   >
     <stackRoutes.Screen name="Welcome" component={Welcome} />
     <stackRoutes.Screen name="Search" component={Search} />
-    <stackRoutes.Screen name="Weather" component={Weather} />
+    <stackRoutes.Screen name="Dados da Cidade" component={DataCityRoutes} />
+    <stackRoutes.Screen name="Clima" component={DataCityRoutes} />
   </stackRoutes.Navigator>
 );

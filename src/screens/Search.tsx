@@ -50,7 +50,7 @@ export const Search = () => {
     if (!!enteredInput) {
       try {
         await handleSubmit(enteredInput);
-        navigate("Weather");
+        navigate("Dados da Cidade");
       } catch (error) {
         Alert.alert(error.message);
       }
@@ -62,7 +62,7 @@ export const Search = () => {
   const locationNav = async () => {
     try {
       handleLocation();
-      navigate("Weather");
+      navigate("Dados da Cidade");
     } catch (error) {
       Alert.alert(error.message);
     }

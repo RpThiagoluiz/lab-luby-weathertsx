@@ -3,17 +3,19 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Platform } from "react-native";
 import { Weather } from "../screens/Weather";
+
 import { colors } from "../styles/colors";
+import { OldWeather } from "../screens/oldWeatherApp";
 
 const AppTab = createBottomTabNavigator();
 
-export const AuthRoutes = () => {
+export const DataCityRoutes = () => {
   return (
     <AppTab.Navigator
       tabBarOptions={
         //Criar o estilo, ou passar diretamente pelo obj
         {
-          activeTintColor: colors.green,
+          activeTintColor: colors.blue,
           inactiveTintColor: colors.heading,
           labelPosition: "beside-icon",
           style: {
@@ -32,10 +34,20 @@ export const AuthRoutes = () => {
       }
     >
       <AppTab.Screen
-        name="Weather"
+        name="Dados da Cidade"
         component={Weather}
         options={{
           //Essas infos size, color vem da onde
+          tabBarIcon: ({ size, color }) => (
+            <FontAwesome5 name="city" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <AppTab.Screen
+        name="Clima"
+        component={OldWeather}
+        options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons
               name="weather-partly-cloudy"
@@ -45,16 +57,6 @@ export const AuthRoutes = () => {
           ),
         }}
       />
-
-      {/* <AppTab.Screen
-        name="Search Custom"
-        component={SearchApp}
-        options={{
-          tabBarIcon: ({ size, color }) => (
-            <FontAwesome5 name="search-location" size={size} color={color} />
-          ),
-        }}
-      /> */}
     </AppTab.Navigator>
   );
 };
