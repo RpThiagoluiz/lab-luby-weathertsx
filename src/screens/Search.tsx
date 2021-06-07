@@ -3,24 +3,22 @@ import {
   View,
   Text,
   StyleSheet,
-  Image,
   TextInput,
   SafeAreaView,
   TouchableOpacity,
-  Dimensions,
   KeyboardAvoidingView,
   TouchableWithoutFeedback,
   Platform,
   Keyboard,
   Alert,
+  FlatList,
 } from "react-native";
-import * as Location from "expo-location";
 import { useNavigation } from "@react-navigation/core";
 import { Load } from "../components/Load";
-import { PreviousSearches } from "../components/PreviousSearches";
 import { Foundation } from "@expo/vector-icons";
 import { colors } from "../styles/colors";
-import { useLocaiton } from "../hook/Location";
+import { useLocation } from "../hook/Location";
+import { PreviousCitySearches } from "../components/PreviousCitySearches";
 
 export const Search = () => {
   const [isFocused, setIsFocused] = useState(false);
@@ -28,7 +26,8 @@ export const Search = () => {
   const [enteredInput, setEnteredInput] = useState("");
 
   const { navigate } = useNavigation();
-  const { loading, handleLocation, handleSubmit } = useLocaiton();
+  const { recentsSearchs, loading, handleLocation, handleSubmit } =
+    useLocation();
 
   const handleInputBlur = () => {
     setIsFocused(false);
@@ -64,6 +63,10 @@ export const Search = () => {
     } catch (error) {
       Alert.alert(error.message);
     }
+  };
+
+  const handleRemove = () => {
+    console.log(`await`);
   };
 
   if (loading) return <Load />;
@@ -107,9 +110,19 @@ export const Search = () => {
             </View>
             <View>
               <Text style={styles.subTitle}>Previous Searches</Text>
-              <PreviousSearches />
-              <PreviousSearches />
-              <PreviousSearches />
+
+              {recentsSearchs.length > 1 ? (
+                <FlatList
+                  data={recentsSearchs}
+                  keyExtractor={(item) => item.city}
+                  showsVerticalScrollIndicator={false}
+                  renderItem={({ item }) => (
+                    <PreviousCitySearches data={item} />
+                  )}
+                />
+              ) : (
+                <Text style={styles.empty}>Empty Searchs</Text>
+              )}
             </View>
           </View>
         </TouchableWithoutFeedback>
@@ -169,5 +182,9 @@ const styles = StyleSheet.create({
     fontSize: 28,
     lineHeight: 38,
     marginBottom: 10,
+  },
+  empty: {
+    fontWeight: "bold",
+    fontSize: 18,
   },
 });

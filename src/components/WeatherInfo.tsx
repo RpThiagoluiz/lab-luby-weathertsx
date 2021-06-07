@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Image } from "react-native";
 import { colors } from "../styles/colors";
 
 //Escopo pra outra funcao de stylo ter acesso
-const { blue, blue_light } = colors;
+const { red, red_light } = colors;
 
 export const WeatherInfo = ({ currentWeather }: any) => {
   //a desestruturacao do weather, foi q ele tem um array e dentro desse array tem 1 objt, com varios valores.
@@ -39,12 +39,12 @@ const styles = StyleSheet.create({
   },
   textPrimary: {
     fontSize: 40,
-    color: blue,
+    color: red,
   },
   textSecondary: {
     fontWeight: "500",
     fontSize: 20,
-    color: blue_light,
+    color: red_light,
     marginTop: 10,
   },
 });

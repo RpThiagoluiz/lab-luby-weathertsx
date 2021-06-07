@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { colors } from "../styles/colors";
 import { FontAwesome5, MaterialCommunityIcons } from "@expo/vector-icons";
 
-const { shape, blue } = colors;
+const { shape, red } = colors;
 
 export const WeatherDetails = ({ currentWeather, unitsSystem }: any) => {
   const {
@@ -27,7 +27,7 @@ export const WeatherDetails = ({ currentWeather, unitsSystem }: any) => {
           }}
         >
           <View style={styles.weatherDetailsRow}>
-            <FontAwesome5 name="temperature-low" size={25} color={blue} />
+            <FontAwesome5 name="temperature-low" size={25} color={red} />
             <View style={styles.weatherDetailsItems}>
               <Text>Feels like :</Text>
               <Text style={styles.textSecondary}>{feels_like} °</Text>
@@ -36,7 +36,7 @@ export const WeatherDetails = ({ currentWeather, unitsSystem }: any) => {
         </View>
         <View style={styles.weatherDetailsBox}>
           <View style={styles.weatherDetailsRow}>
-            <MaterialCommunityIcons name="water" size={30} color={blue} />
+            <MaterialCommunityIcons name="water" size={30} color={red} />
             <View style={styles.weatherDetailsItems}>
               <Text>Humidity :</Text>
               <Text style={styles.textSecondary}>{humidity} %</Text>
@@ -62,7 +62,7 @@ export const WeatherDetails = ({ currentWeather, unitsSystem }: any) => {
             <MaterialCommunityIcons
               name="weather-windy"
               size={30}
-              color={blue}
+              color={red}
             />
             <View style={styles.weatherDetailsItems}>
               <Text>Wind Speed :</Text>
@@ -72,7 +72,7 @@ export const WeatherDetails = ({ currentWeather, unitsSystem }: any) => {
         </View>
         <View style={styles.weatherDetailsBox}>
           <View style={styles.weatherDetailsRow}>
-            <MaterialCommunityIcons name="speedometer" size={30} color={blue} />
+            <MaterialCommunityIcons name="speedometer" size={30} color={red} />
             <View style={styles.weatherDetailsItems}>
               <Text>Pressure :</Text>
               <Text style={styles.textSecondary}>{pressure} hPa</Text>
@@ -107,7 +107,7 @@ const styles = StyleSheet.create({
   },
   textSecondary: {
     fontSize: 15,
-    color: colors.blue,
+    color: colors.red,
     fontWeight: "700",
     margin: 7,
   },

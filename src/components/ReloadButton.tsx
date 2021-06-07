@@ -1,9 +1,9 @@
 import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { SimpleLineIcons } from "@expo/vector-icons"; //NATIVO TBM
 import { colors } from "../styles/colors";
 
-const { blue } = colors;
+const { red } = colors;
 
 interface ReloadButtonProps {
   load: () => Promise<void>;
@@ -12,7 +12,7 @@ interface ReloadButtonProps {
 export const ReloadButton = ({ load }: ReloadButtonProps) => {
   return (
     <View style={styles.reloadIcon}>
-      <SimpleLineIcons onPress={load} name="refresh" size={24} color={blue} />
+      <SimpleLineIcons onPress={load} name="refresh" size={24} color={red} />
     </View>
   );
 };

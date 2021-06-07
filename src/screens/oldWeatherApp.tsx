@@ -16,7 +16,7 @@ import { UnitsPicker } from "../components/UnitsPicker";
 import { WeatherInfo } from "../components/WeatherInfo";
 import { WeatherDetails } from "../components/WeatherDetails";
 import { colors } from "../styles/colors";
-import { useLocaiton } from "../hook/Location";
+import { useLocation } from "../hook/Location";
 
 export const OldWeather = () => {
   //const [loading, setLoading] = useState(true); // Ao inves de utilizar assim vc pode passar sem dando opcoes pra ele.
@@ -24,7 +24,7 @@ export const OldWeather = () => {
   const [currentWeather, setCurrentWeather] = useState(null);
   const [unitsSystem, setUnitsSystem] = useState("metric");
 
-  const { dataCity } = useLocaiton();
+  const { dataCity } = useLocation();
 
   useEffect(() => {
     load();

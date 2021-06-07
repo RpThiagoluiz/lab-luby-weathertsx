@@ -15,7 +15,7 @@ export const DataCityRoutes = () => {
       tabBarOptions={
         //Criar o estilo, ou passar diretamente pelo obj
         {
-          activeTintColor: colors.blue,
+          activeTintColor: colors.red,
           inactiveTintColor: colors.heading,
           labelPosition: "beside-icon",
           style: {

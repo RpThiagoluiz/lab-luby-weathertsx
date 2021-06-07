@@ -1,8 +1,7 @@
 export const colors = {
   red: "#d12153",
+  red_light: "#d1205190",
   green: "#32B768",
-  blue: "#87CEEB",
-  blue_light: "#EBF6FF",
   shape: "#bdbdbdbd",
   text: "#cfcfcfcf",
   heading: "#696969",
