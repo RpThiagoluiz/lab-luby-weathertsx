@@ -1,6 +1,11 @@
 import React from "react";
+import { LocationProvider } from "./src/hook/Location";
 import { Routes } from "./src/routes";
 
 export default function App() {
-  return <Routes />;
+  return (
+    <LocationProvider>
+      <Routes />
+    </LocationProvider>
+  );
 }

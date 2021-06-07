@@ -22,16 +22,15 @@ import { Foundation } from "@expo/vector-icons";
 import { OPEN_CAGE_API_KEY } from "../services/keys";
 import { colors } from "../styles/colors";
 import { api } from "../services/api";
-import axios from "axios";
+import { useLocaiton } from "../hook/Location";
 
 export const Search = () => {
   const [isFocused, setIsFocused] = useState(false);
   const [isFilled, setIsFilled] = useState(false);
   const [enteredInput, setEnteredInput] = useState("");
-  const [dataCity, setDataCity] = useState({});
-  const [loading, setLoading] = useState(false);
 
   const { navigate } = useNavigation();
+  const { loading, handleLocation, handleSubmit } = useLocaiton();
 
   const handleInputBlur = () => {
     setIsFocused(false);
@@ -47,55 +46,26 @@ export const Search = () => {
     setEnteredInput(value);
   };
 
-  const handleSubmit = async () => {
-    try {
-      const { data } = await api.get(
-        `json?key=${OPEN_CAGE_API_KEY}&q=${enteredInput}`
-      );
-
-      if (!data.total_results) {
-        throw new Error(`Error ao Carregar os dados`);
+  const locationInputNav = async () => {
+    if (!!enteredInput) {
+      try {
+        await handleSubmit(enteredInput);
+        navigate("Weather");
+      } catch (error) {
+        Alert.alert(error.message);
       }
-
-      console.log(data);
-    } catch (error) {
-      Alert.alert(error.message);
+    } else {
+      Alert.alert(`Preencha o nome da cidade primeiro ☹!`);
     }
   };
 
-  const handleLocation = async () => {
+  const locationNav = async () => {
     try {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-
-      if (status !== "granted") {
-        Alert.alert(
-          `Para pegar sua localizacao precisamos da autorizacao, ou vc pode digitar a cidade selecionada!`
-        );
-      }
-
-      const location = await Location.getCurrentPositionAsync();
-      const { latitude, longitude } = location.coords;
-      console.log(latitude);
-
-      const { data } = await api.get(
-        `/json?q=${latitude}+${longitude}&key=${OPEN_CAGE_API_KEY}`
-      );
-
-      if (!data) {
-        throw new Error(`Error ao Carregar os dados`);
-      }
+      handleLocation();
+      navigate("Weather");
     } catch (error) {
       Alert.alert(error.message);
     }
-
-    // try {
-    //   const result = api.get(
-    //     `q=${latitude}+${longitude}&key=${OPEN_CAGE_API_KEY}`
-    //   );
-    //   console.log(result);
-    // } catch (error) {
-    //   Alert.alert(error.message);
-    // }
   };
 
   if (loading) return <Load />;
@@ -125,14 +95,14 @@ export const Search = () => {
               <TouchableOpacity
                 style={styles.button}
                 activeOpacity={0.5}
-                onPress={handleSubmit}
+                onPress={locationInputNav}
               >
                 <Text style={styles.text}>Submit</Text>
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.button}
                 activeOpacity={0.5}
-                onPress={handleLocation}
+                onPress={locationNav}
               >
                 <Foundation name="target-two" size={25} color="white" />
               </TouchableOpacity>
