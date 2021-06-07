@@ -8,8 +8,6 @@ export const DataCity = () => {
 
   if (loading) return <Load />;
 
-  //corrigir o erro do nome da cidade.
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.wrapper}>

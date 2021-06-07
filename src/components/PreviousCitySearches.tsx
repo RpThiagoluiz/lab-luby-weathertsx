@@ -24,7 +24,7 @@ export const PreviousCitySearches = ({
   // handleRemove,
   ...rest
 }: PreviousSearchesProps) => {
-  const { handleSubmit } = useLocation();
+  const { handleSubmit, removeCity } = useLocation();
   const { navigate } = useNavigation();
 
   const locationNav = async () => {
@@ -42,7 +42,10 @@ export const PreviousCitySearches = ({
       renderRightActions={() => (
         <Animated.View>
           <View>
-            <RectButton style={styles.buttonRemove}>
+            <RectButton
+              style={styles.buttonRemove}
+              onPress={() => removeCity(data.city)}
+            >
               <Feather name="trash" size={32} color={colors.white} />
             </RectButton>
           </View>

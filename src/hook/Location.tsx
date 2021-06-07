@@ -10,6 +10,7 @@ interface LocationContext {
   recentsSearchs: dataCityData[];
   handleLocation: () => Promise<void>;
   handleSubmit: (city: string) => Promise<void>;
+  removeCity: (city: string) => void;
 }
 
 interface GitHubProviderProps {
@@ -114,15 +115,23 @@ const LocationProvider = ({ children }: GitHubProviderProps) => {
     }
   };
 
-  const addCity = async (results: dataCityData) => {
+  const addCity = (results: dataCityData) => {
+    //Verificar se ja existe se sim return,
+
     setLoading(true);
     let filteredSearchs = [...recentsSearchs];
-    recentsSearchs.filter((e) => e.city !== results.city);
+    filteredSearchs = recentsSearchs.filter((e) => e.city !== results.city);
     filteredSearchs.unshift(results);
     filteredSearchs = filteredSearchs.slice(0, 3);
 
     setRecentsSearchs(filteredSearchs);
     setLoading(false);
+  };
+
+  const removeCity = (city: string) => {
+    setRecentsSearchs((prevState) =>
+      prevState.filter((el) => el.city !== city)
+    );
   };
 
   return (
@@ -133,6 +142,7 @@ const LocationProvider = ({ children }: GitHubProviderProps) => {
         loading,
         handleLocation,
         handleSubmit,
+        removeCity,
       }}
     >
       {children}

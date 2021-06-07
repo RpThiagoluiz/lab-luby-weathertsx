@@ -65,10 +65,6 @@ export const Search = () => {
     }
   };
 
-  const handleRemove = () => {
-    console.log(`await`);
-  };
-
   if (loading) return <Load />;
 
   return (
@@ -111,9 +107,11 @@ export const Search = () => {
             <View>
               <Text style={styles.subTitle}>Previous Searches</Text>
 
-              {recentsSearchs.length > 1 ? (
+              {loading && <Text>Carregando dados...</Text>}
+              {recentsSearchs.length > 0 ? (
                 <FlatList
                   data={recentsSearchs}
+                  //Adc dobrado a cidade
                   keyExtractor={(item) => item.city}
                   showsVerticalScrollIndicator={false}
                   renderItem={({ item }) => (
@@ -168,10 +166,11 @@ const styles = StyleSheet.create({
   button: {
     backgroundColor: colors.red,
     borderRadius: 10,
-    paddingVertical: 15,
+
     width: "40%",
-    height: 50,
+    height: 55,
     alignItems: "center",
+    justifyContent: "center",
   },
   text: {
     color: colors.white,
