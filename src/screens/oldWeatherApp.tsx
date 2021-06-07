@@ -16,12 +16,15 @@ import { UnitsPicker } from "../components/UnitsPicker";
 import { WeatherInfo } from "../components/WeatherInfo";
 import { WeatherDetails } from "../components/WeatherDetails";
 import { colors } from "../styles/colors";
+import { useLocaiton } from "../hook/Location";
 
 export const OldWeather = () => {
   //const [loading, setLoading] = useState(true); // Ao inves de utilizar assim vc pode passar sem dando opcoes pra ele.
   const [errorMessage, setErrorMessage] = useState("");
   const [currentWeather, setCurrentWeather] = useState(null);
   const [unitsSystem, setUnitsSystem] = useState("metric");
+
+  const { dataCity } = useLocaiton();
 
   useEffect(() => {
     load();
@@ -31,13 +34,7 @@ export const OldWeather = () => {
     setCurrentWeather(null);
 
     try {
-      let { status } = await Location.requestForegroundPermissionsAsync();
-
-      if (status !== "granted") {
-        throw new Error(`Acess to location is needed to run this app!`);
-      }
-      const location = await Location.getCurrentPositionAsync();
-      const { latitude, longitude } = location.coords;
+      const { lat: latitude, long: longitude } = dataCity;
 
       const { data } = await axios.get(
         `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=${unitsSystem}&appid=${WEATHER_API_KEY}`

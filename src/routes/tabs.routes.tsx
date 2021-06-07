@@ -2,7 +2,7 @@ import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons, FontAwesome5 } from "@expo/vector-icons";
 import { Platform } from "react-native";
-import { Weather } from "../screens/Weather";
+import { DataCity } from "../screens/DataCity";
 
 import { colors } from "../styles/colors";
 import { OldWeather } from "../screens/oldWeatherApp";
@@ -35,7 +35,7 @@ export const DataCityRoutes = () => {
     >
       <AppTab.Screen
         name="Dados da Cidade"
-        component={Weather}
+        component={DataCity}
         options={{
           //Essas infos size, color vem da onde
           tabBarIcon: ({ size, color }) => (

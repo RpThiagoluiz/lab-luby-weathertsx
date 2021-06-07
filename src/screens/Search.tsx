@@ -19,9 +19,7 @@ import { useNavigation } from "@react-navigation/core";
 import { Load } from "../components/Load";
 import { PreviousSearches } from "../components/PreviousSearches";
 import { Foundation } from "@expo/vector-icons";
-import { OPEN_CAGE_API_KEY } from "../services/keys";
 import { colors } from "../styles/colors";
-import { api } from "../services/api";
 import { useLocaiton } from "../hook/Location";
 
 export const Search = () => {

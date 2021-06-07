@@ -29,8 +29,19 @@ const LocationProvider = ({ children }: GitHubProviderProps) => {
       if (!data.total_results) {
         throw new Error(`Error ao Carregar os dados`);
       }
+      const dataSuccess = await data.results[0];
+
+      let results = {
+        city: dataSuccess.components.city,
+        country: dataSuccess.components.country,
+        state: dataSuccess.components.state,
+        long: `${dataSuccess.geometry.lng}`,
+        lat: `${dataSuccess.geometry.lat}`,
+        state_code: dataSuccess.components.state_code,
+      };
+
+      setDataCity(results);
       setLoading(false);
-      setDataCity(data.results);
     } catch (error) {
       setLoading(false);
       throw new Error(error.message);
@@ -60,8 +71,20 @@ const LocationProvider = ({ children }: GitHubProviderProps) => {
         setLoading(false);
         throw new Error(`Error ao Carregar os dados`);
       }
+
+      const dataSuccess = await data.results[0];
+
+      let results = {
+        city: dataSuccess.components.city,
+        country: dataSuccess.components.country,
+        state: dataSuccess.components.state,
+        long: `${dataSuccess.geometry.lng}`,
+        lat: `${dataSuccess.geometry.lat}`,
+        state_code: dataSuccess.components.state_code,
+      };
+
+      setDataCity(results);
       setLoading(false);
-      setDataCity(data.results);
     } catch (error) {
       setLoading(false);
       Alert.alert(error.message);

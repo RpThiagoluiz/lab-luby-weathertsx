@@ -3,9 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 
 import { Welcome } from "../screens/Home";
 import { Search } from "../screens/Search";
-import { Weather } from "../screens/Weather";
 import { colors } from "../styles/colors";
-import { OldWeather } from "../screens/oldWeatherApp";
 import { DataCityRoutes } from "./tabs.routes";
 
 const stackRoutes = createStackNavigator();
